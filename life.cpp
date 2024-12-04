@@ -8,9 +8,10 @@ using namespace std;
 #include <fstream>
 #include <string>
 #include <filesystem>
+#include <cstring>
 
-#define MAXTHREAD 10
-#define MAXGRID 40
+#define MAXTHREAD 32
+#define MAXGRID 2048
 #define RANGE 1
 #define ALLDONE 2
 #define GO 3
@@ -211,9 +212,10 @@ int main(int argc, char *argv[]) {
         cout << "Expected between 3 and 5 arguments for threads, file, generations, [print], and [input]\n";
         exit(1);
     } else if (argc > 4) {  // parse optional args
-        print = *argv[4] == 'y';
+        print = !strcmp( argv[4], "print");
+
         if (argc == 6) {
-            input = *argv[5] == 'y';
+            input = !strcmp( argv[5], "input");
         }
     }
 
